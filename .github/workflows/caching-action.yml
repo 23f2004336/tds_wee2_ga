@@ -18,4 +18,4 @@ jobs:
       - name: prime-cache-f9040b0
         run: echo "The cache-hit status was ${{ steps.cache-pip.outputs.cache-hit }}"
       - name: 4. Install Python packages
-        run: uv pip install pandas numpy scikit-learn
+        run: uv pip install --system pandas numpy scikit-learn
