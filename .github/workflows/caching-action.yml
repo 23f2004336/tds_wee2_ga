@@ -7,15 +7,22 @@ jobs:
     steps:
       - name: 1. Checkout Repository
         uses: actions/checkout@v4
+
       - name: 2. Setup Python environment with uv
         uses: astral-sh/setup-uv@v1
-      - name: 3. Cache Python dependencies
+
+      - name: 3. Cache uv dependencies
         uses: actions/cache@v4
-        id: cache-pip
+        id: cache-uv
         with:
-          path: ~/.cache/pip
+          path: ~/.cache/uv
           key: cache-f9040b0
+
       - name: prime-cache-f9040b0
-        run: echo "The cache-hit status was ${{ steps.cache-pip.outputs.cache-hit }}"
-      - name: 4. Install Python packages
-        run: uv pip install --system pandas numpy scikit-learn
+        run: echo "The cache-hit status was ${{ steps.cache-uv.outputs.cache-hit }}"
+
+      - name: 4. Create venv and Install packages
+        run: |
+          uv venv
+          source .venv/bin/activate
+          uv pip install pandas numpy scikit-learn
