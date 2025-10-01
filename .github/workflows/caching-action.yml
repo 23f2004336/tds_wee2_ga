@@ -1,55 +1,21 @@
-name: 'TDS Assignment 7 Caching Action'
-
+name: TDS Assignment 7 Caching Action
 on:
-  # This allows you to run the workflow manually from the Actions tab
   workflow_dispatch:
-
 jobs:
   build-and-cache:
     runs-on: ubuntu-latest
     steps:
-      - name: '1. Checkout Repository'
+      - name: 1. Checkout Repository
         uses: actions/checkout@v4
-
-      - name: '2. Setup Python environment with uv'
+      - name: 2. Setup Python environment with uv
         uses: astral-sh/setup-uv@v1
-
-      - name: '3. Cache Python dependencies'
+      - name: 3. Cache Python dependencies
         uses: actions/cache@v4
         id: cache-pip
         with:
           path: ~/.cache/pip
           key: cache-f9040b0
-
-      - name: 'prime-cache-f9040b0'
-        run: echo "The cache-hit status was: ${{ steps.cache-pip.outputs.cache-hit }}"
-        
-      - name: '4. Install Python packages'
-        run: uv pip install pandas numpy scikit-learnname: 'TDS Assignment 7 Caching Action'
-
-on:
-  # This allows you to run the workflow manually from the Actions tab
-  workflow_dispatch:
-
-jobs:
-  build-and-cache:
-    runs-on: ubuntu-latest
-    steps:
-      - name: '1. Checkout Repository'
-        uses: actions/checkout@v4
-
-      - name: '2. Setup Python environment with uv'
-        uses: astral-sh/setup-uv@v1
-
-      - name: '3. Cache Python dependencies'
-        uses: actions/cache@v4
-        id: cache-pip
-        with:
-          path: ~/.cache/pip
-          key: cache-f9040b0
-
-      - name: 'prime-cache-f9040b0'
-        run: echo "The cache-hit status was: ${{ steps.cache-pip.outputs.cache-hit }}"
-        
-      - name: '4. Install Python packages'
+      - name: prime-cache-f9040b0
+        run: echo "The cache-hit status was ${{ steps.cache-pip.outputs.cache-hit }}"
+      - name: 4. Install Python packages
         run: uv pip install pandas numpy scikit-learn
