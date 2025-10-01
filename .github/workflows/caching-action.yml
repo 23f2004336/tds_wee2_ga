@@ -13,19 +13,15 @@ jobs:
       - name: '2. Setup Python environment with uv'
         uses: astral-sh/setup-uv@v1
 
-      # This is the caching step
       - name: '3. Cache Python dependencies'
-        uses: actions/cache@v4
+        uses: actions/cache@vv4
         id: cache-pip
         with:
-          # The path to the directory to be cached
           path: ~/.cache/pip
-          # The specific key required by the assignment
           key: cache-f9040b0
 
-      # This is the required step with the specific name
       - name: 'prime-cache-f9040b0'
         run: echo "The cache-hit status was: ${{ steps.cache-pip.outputs.cache-hit }}"
+        
       - name: '4. Install Python packages'
-        run: uv pip install pandas numpy scikit-learn'
-        run: pip install pandas numpy scikit-learn
+        run: uv pip install pandas numpy scikit-learn
