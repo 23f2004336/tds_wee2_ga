@@ -1,7 +1,7 @@
 name: 'TDS Assignment 7 Caching Action'
 
 on:
-  workflow_dispatch: # Allows you to run this workflow manually
+  workflow_dispatch:
 
 jobs:
   build-and-cache:
@@ -16,7 +16,7 @@ jobs:
       # This is the caching step
       - name: '3. Cache Python dependencies'
         uses: actions/cache@v4
-        id: cache-pip # Give this step an ID to reference its outputs
+        id: cache-pip
         with:
           # The path to the directory to be cached
           path: ~/.cache/pip
@@ -26,6 +26,6 @@ jobs:
       # This is the required step with the specific name
       - name: 'prime-cache-f9040b0'
         run: echo "The cache-hit status was: ${{ steps.cache-pip.outputs.cache-hit }}"
-
       - name: '4. Install Python packages'
+        run: uv pip install pandas numpy scikit-learn'
         run: pip install pandas numpy scikit-learn
